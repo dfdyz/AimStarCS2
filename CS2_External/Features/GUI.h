@@ -105,6 +105,11 @@ namespace GUI
 				ImGui::SameLine();
 				ImGui::Checkbox("On Ground Only", &MenuConfig::AirJump);
 
+				ImGui::Checkbox("Recoil Correction", &MenuConfig::RecoilCorrection);
+				if (MenuConfig::RecoilCorrection) {
+					ImGui::SliderFloat("Recoil Correction", &MenuConfig::RecoilCorrectionLength, 0.0f, 100.0f, "%.0f", ImGuiColorEditFlags_Float);
+				}
+
 				float FovMin = 0.1f, FovMax = 89.f;
 				float SmoothMin = 0.1f, SmoothMax = 1.f;
 				ImGui::SliderFloat("Fov", &AimControl::AimFov, 0.0f, 25.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
@@ -468,6 +473,11 @@ namespace GUI
 
 				ImGui::Checkbox("Draw Fov", &ESPConfig::DrawFov);
 				ImGui::Checkbox("Visible Only", &MenuConfig::VisibleCheck);
+
+				ImGui::Checkbox("Recoil Correction", &MenuConfig::RecoilCorrection);
+				if (MenuConfig::RecoilCorrection) {
+					ImGui::SliderFloat("Recoil Correction", &MenuConfig::RecoilCorrectionLength, 0.0f, 100.0f, "%.0f", ImGuiColorEditFlags_Float);
+				}
 
 				float FovMin = 0.1f, FovMax = 89.f;
 				float SmoothMin = 0.1f, SmoothMax = 1.f;
