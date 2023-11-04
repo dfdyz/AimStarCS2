@@ -135,6 +135,8 @@
     <ClInclude Include="Features\GUI.h" />
     <ClInclude Include="Features\Glow.h" />
     <ClInclude Include="Features\GetWeaponIcon.h" />
+    <ClInclude Include="TF\EulerAngle.h" />
+    <ClInclude Include="TF\Quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -199,6 +201,8 @@
     <ClCompile Include="Utils\GlobalVars.cpp" />
     <ClCompile Include="Features\Mouse.cpp" />
     <ClCompile Include="Features\Glow.cpp" />
+    <ClCompile Include="TF\EulerAngle.cpp" />
+    <ClCompile Include="TF\Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CS2_External.rc" />
