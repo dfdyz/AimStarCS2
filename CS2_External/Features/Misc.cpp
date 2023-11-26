@@ -24,10 +24,10 @@ void Misc::CheatList() noexcept
 	CheatText("Crosshair", CrosshairConfig::ShowCrossHair);
 	CheatText("Headshot Line", MenuConfig::ShowHeadShootLine);
 	CheatText("No Flash", MenuConfig::NoFlash);
-	CheatText("Bhop", MenuConfig::BunnyHop);
+	//CheatText("Bhop", MenuConfig::BunnyHop);
 	CheatText("HitSound", MenuConfig::HitSound);
 	CheatText("Bomb Timer", MenuConfig::bmbTimer);
-	CheatText("Spec List", MenuConfig::SpecList);
+	//CheatText("Spec List", MenuConfig::SpecList);
 
 	ImGui::End();
 }

@@ -212,7 +212,7 @@ namespace Lang
 		RadarText.AlphaSlider = u8"Window Background Alpha";
 
 		// Triggerbot
-		TriggerText.FeatureName = u8" Trigggerbot";
+		TriggerText.FeatureName = u8" TriggerBot";
 		TriggerText.HotKeyList = u8"HotKey";
 		TriggerText.Toggle = u8"Always Active";
 		TriggerText.DelaySlider = u8"Shot Delay";
@@ -443,7 +443,7 @@ namespace Lang
 		RadarText.AlphaSlider = u8"Przezroczystość Tła Okna";
 
 		// Triggerbot
-		TriggerText.FeatureName = u8" Trigggerbot";
+		TriggerText.FeatureName = u8" TriggerBot";
 		TriggerText.HotKeyList = u8"Klawisz";
 		TriggerText.Toggle = u8"Zawsze Aktywny";
 		TriggerText.DelaySlider = u8"Opóźnienie Strzału";
@@ -676,7 +676,7 @@ namespace Lang
 		RadarText.AlphaSlider = u8"Vindue Bagground Alfa";
 
 		// Triggerbot
-		TriggerText.FeatureName = u8" Trigggerbot";
+		TriggerText.FeatureName = u8" TriggerBot";
 		TriggerText.HotKeyList = u8"HotNøgle";
 		TriggerText.Toggle = u8"Altid Aktiv";
 		TriggerText.DelaySlider = u8"Skud forsinkelse";
@@ -792,7 +792,7 @@ namespace Lang
 		RadarText.AlphaSlider = u8"Fundo da Janela Alfa";
 
 		// Triggerbot
-		TriggerText.FeatureName = u8" Trigggerbot";
+		TriggerText.FeatureName = u8" TriggerBot";
 		TriggerText.HotKeyList = u8"Tecla";
 		TriggerText.Toggle = u8"Sempre ativo";
 		TriggerText.DelaySlider = u8"Tempo de Disparo";
@@ -908,7 +908,7 @@ namespace Lang
 		RadarText.AlphaSlider = u8"Prehliadnosť pozadia okna";
 
 		// Triggerbot
-		TriggerText.FeatureName = u8" Trigggerbot";
+		TriggerText.FeatureName = u8" TriggerBot";
 		TriggerText.HotKeyList = u8"Tlačítko";
 		TriggerText.Toggle = u8"Vždy aktívne";
 		TriggerText.DelaySlider = u8"Oneskorenie výstrelu";

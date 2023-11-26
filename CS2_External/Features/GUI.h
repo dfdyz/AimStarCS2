@@ -84,9 +84,9 @@ namespace GUI
 				ImGui::SameLine();
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth);
 				ImGui::Combo(Lang::ESPtext.LinePosList, &MenuConfig::LinePos, "Top\0Center\0Bottom\0");
-				ImGui::Checkbox(Lang::ESPtext.VisCheck, &ESPConfig::VisibleCheck);
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##EspVisCol", reinterpret_cast<float*>(&ESPConfig::VisibleColor), ImGuiColorEditFlags_NoInputs);
+				//ImGui::Checkbox(Lang::ESPtext.VisCheck, &ESPConfig::VisibleCheck);
+				//ImGui::SameLine();
+				//ImGui::ColorEdit4("##EspVisCol", reinterpret_cast<float*>(&ESPConfig::VisibleColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::Checkbox(Lang::ESPtext.Preview, &ESPConfig::ShowPreview);
 
 				//			ImGui::NextColumn();
@@ -122,7 +122,7 @@ namespace GUI
 				ImGui::Checkbox(Lang::AimbotText.DrawFov, &ESPConfig::DrawFov);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::FovCircleColor), ImGuiColorEditFlags_NoInputs);
-				ImGui::Checkbox(Lang::AimbotText.VisCheck, &MenuConfig::VisibleCheck);
+				//ImGui::Checkbox(Lang::AimbotText.VisCheck, &MenuConfig::VisibleCheck);
 				ImGui::Checkbox(Lang::AimbotText.JumpCheck, &MenuConfig::AirJump);
 
 				ImGui::SliderFloat(Lang::AimbotText.FovSlider, &AimControl::AimFov, 0.0f, 25.0f, "%.1f", ImGuiSliderFlags_Logarithmic | ImGuiColorEditFlags_NoInputs);
@@ -303,7 +303,7 @@ namespace GUI
 				ImGui::Checkbox(Lang::MiscText.bmbTimer, &MenuConfig::bmbTimer);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##BombTimerCol", reinterpret_cast<float*>(&MenuConfig::BombTimerCol), ImGuiColorEditFlags_NoInputs);
-				ImGui::Checkbox(Lang::MiscText.SpecList, &MenuConfig::SpecList);
+				//ImGui::Checkbox(Lang::MiscText.SpecList, &MenuConfig::SpecList);
 				if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
 				{
 					ImGui::SetTooltip("Broken");
@@ -311,11 +311,11 @@ namespace GUI
 //				ImGui::Checkbox("Invincible", &MenuConfig::infinity);
 
 				ImGui::NextColumn();
-				ImGui::Checkbox(Lang::MiscText.Bhop, &MenuConfig::BunnyHop);
-				if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-				{
-					ImGui::SetTooltip("Bhop is currently unavailable as Valve fixes a bug that force jump");
-				}
+				//ImGui::Checkbox(Lang::MiscText.Bhop, &MenuConfig::BunnyHop);
+				//if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+				//{
+				//	ImGui::SetTooltip("Bhop is currently unavailable as Valve fixes a bug that force jump");
+				//}
 				ImGui::Checkbox(Lang::MiscText.Watermark, &MenuConfig::WaterMark);
 				ImGui::Checkbox(Lang::MiscText.CheatList, &MenuConfig::CheatList);
 				ImGui::Checkbox(Lang::MiscText.TeamCheck, &MenuConfig::TeamCheck);
@@ -402,8 +402,8 @@ namespace GUI
 				}
 				if (ImGui::BeginPopup("##Filledboxvis")) {
 					ImGui::TextUnformatted("Settings");
-					ImGui::Checkbox("Visible Check", &ESPConfig::FilledVisBox);
-					ImGui::SameLine();
+					// ImGui::Checkbox("Visible Check", &ESPConfig::FilledVisBox);
+					// ImGui::SameLine();
 					ImGui::ColorEdit4("##FilledBoxVisColor", reinterpret_cast<float*>(&ESPConfig::BoxFilledVisColor), ImGuiColorEditFlags_NoInputs);
 					ImGui::EndPopup();
 				}
@@ -529,7 +529,7 @@ namespace GUI
 				ImGui::Checkbox("Toggle Mode", &MenuConfig::AimToggleMode);
 
 				ImGui::Checkbox("Draw Fov", &ESPConfig::DrawFov);
-				ImGui::Checkbox("Visible Only", &MenuConfig::VisibleCheck);
+				// ImGui::Checkbox("Visible Only", &MenuConfig::VisibleCheck);
 				ImGui::Checkbox("On Ground Only", &MenuConfig::AirJump);
 
 				float FovMin = 0.1f, FovMax = 89.f;
@@ -591,11 +591,11 @@ namespace GUI
 			ImGui::Checkbox("Watermark", &MenuConfig::WaterMark);
 			ImGui::Checkbox("Cheat List", &MenuConfig::CheatList);
 			ImGui::Checkbox("HitSound", &MenuConfig::HitSound);
-			ImGui::Checkbox("Bunny Hop", &MenuConfig::BunnyHop);
+			//ImGui::Checkbox("Bunny Hop", &MenuConfig::BunnyHop);
 			ImGui::Checkbox("Bomb Timer", &MenuConfig::bmbTimer);
 			ImGui::SameLine();
 			ImGui::ColorEdit4("##BombTimerCol", reinterpret_cast<float*>(&MenuConfig::BombTimerCol), ImGuiColorEditFlags_NoInputs);
-			ImGui::Checkbox("Spectator List", &MenuConfig::SpecList);
+			//ImGui::Checkbox("Spectator List", &MenuConfig::SpecList);
 			ImGui::Checkbox("Team Check", &MenuConfig::TeamCheck);
 			ImGui::Checkbox("Bypass OBS", &MenuConfig::BypassOBS);
 
