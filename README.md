@@ -82,6 +82,20 @@ I made a discord server, where you can get support and much more! Join to us!
   - Mouse Aimbot
 - Major help from Shinyaluvs
 
+# 👥 Contributors
+
+[![@nx0ri](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/nx0ri&h=50&w=50&mask=circle&maxage=7d '@nx0ri')](https://github.com/nx0ri)
+[![@world-onetop](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/world-onetop&h=50&w=50&mask=circle&maxage=7d '@world-onetop')](https://github.com/world-onetop)
+[![@kennyS-69420](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/kennyS-69420&h=50&w=50&mask=circle&maxage=7d '@kennyS-69420')](https://github.com/kennyS-69420)
+[![@ClaudiuHBann](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/ClaudiuHBann&h=50&w=50&mask=circle&maxage=7d '@ClaudiuHBann')](https://github.com/ClaudiuHBann)
+[![@bakatame](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/bakatame&h=50&w=50&mask=circle&maxage=7d '@bakatame')](https://github.com/bakatame)
+[![@M3351AN](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/M3351AN&h=50&w=50&mask=circle&maxage=7d '@M3351AN')](https://github.com/M3351AN)
+[![@Haru1ca](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/Haru1ca&h=50&w=50&mask=circle&maxage=7d '@Haru1ca')](https://github.com/Haru1ca)
+[![@caiocinel](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/caiocinel&h=50&w=50&mask=circle&maxage=7d '@caiocinel')](https://github.com/caiocinel)
+[![@Fr0go1](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/Fr0go1&h=50&w=50&mask=circle&maxage=7d '@Fr0go1')](https://github.com/Fr0go1)
+[![@TKazer](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/TKazer&h=50&w=50&mask=circle&maxage=7d '@TKazer')](https://github.com/TKazer)
+[![@9xN](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/9xN&h=50&w=50&mask=circle&maxage=7d '@9xN')](https://github.com/9xN)
+
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=CowNowK/AimStarCS2&type=Date)](https://star-history.com/#CowNowK/AimStarCS2&Date)
