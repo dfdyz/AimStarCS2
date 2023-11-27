@@ -12,8 +12,9 @@ Open-Source External Cheat For CS2
 Releases posting every cs2 update
 
 I made a discord server, where you can get support and much more! Join to us!
-[**__Discord__**](https://discord.gg/Sw9ejh69GC)
-EVERYONE, ENTP HACKED MY ACCOUNT AND CLEARED THE WHOLE SERVER, IM NOT JOKING
+[**__Discord__**](https://discord.gg/9rtUcENJgy)
+
+history starts again, entp hacked me and destroyed server, join because i recovered it fully
 
 ## ⚠️ Notice
 **Detected:** *Your account will be banned without VAC Bypass*
