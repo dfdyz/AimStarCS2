@@ -7,12 +7,13 @@
 <a href="https://store.steampowered.com/app/730/CounterStrike_2"><img src="https://img.shields.io/badge/Game-CS2-red.svg?style=flat"></a>
 <a href="LICENSE.txt"><img src="https://img.shields.io/github/license/CowNowK/AimStarCS2.svg?style=flat"></a>
 </p>
+
 ## ❗ Info
 Open-Source External Cheat For CS2
 Releases posting every cs2 update
 
 I made a discord server, where you can get support and much more! Join to us!
-[**__Discord__**](https://discord.gg/9rtUcENJgy)
+[**__Discord__**](https://discord.gg/yxVMvvwRzD)
 
 history starts again, entp hacked me and destroyed server, join because i recovered it fully
 
