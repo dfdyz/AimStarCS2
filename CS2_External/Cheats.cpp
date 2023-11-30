@@ -238,13 +238,13 @@ void Cheats::Run()
 
 	// TriggerBot
 	if (MenuConfig::TriggerBot && (GetAsyncKeyState(TriggerBot::HotKey) || MenuConfig::TriggerAlways))
-		TriggerBot::Run(LocalEntity);
+		TriggerBot::Run(LocalEntity);	
 
 	// HitSound
 	HitSound::Run(LocalEntity, PreviousTotalHits);
 
 	// WaterMark
-	Watermark::Render(LocalEntity);
+	Watermark::Render();
 
 	// Cheat List
 	CheatList::Render();

@@ -15,59 +15,37 @@ namespace Offset
 
 	struct
 	{
-		//m_iHealth
 		DWORD Health = 0x32C;
-		//m_iTeamNum
 		DWORD TeamID = 0x3BF;
-		//m_bPawnIsAlive
 		DWORD IsAlive = 0x7C4;
-		//m_hPlayerPawn
 		DWORD PlayerPawn = 0x7BC;
-		//m_iszPlayerName
 		DWORD iszPlayerName = 0x610;
-		//m_flDetectedByEnemySensorTime
-		DWORD EnemySenesor = 0x13DC;
+		DWORD EnemySenesor = 0x13C4;
 	} Entity;
 
 	struct
 	{
-		DWORD BulletServices = 0x16B0;
+		DWORD BulletServices = 0x1698;
 		DWORD TotalHit = 0x40;
 
-		//m_vOldOrigin
-		DWORD Pos = 0x1224;
-		//m_iMaxHealth
+		DWORD Pos = 0x1214;
 		DWORD MaxHealth = 0x328;
-		//m_iHealth
 		DWORD CurrentHealth = 0x32C;
-		//m_pGameSceneNode
 		DWORD GameSceneNode = 0x310;
-
 		DWORD BoneArray = 0x1E0;
-
-		//m_angEyeAngles
-		DWORD angEyeAngles = 0x1510;
-		//m_vecLastClipCameraPos
-		DWORD vecLastClipCameraPos = 0x128C;
-		//m_pClippingWeapon
-		DWORD pClippingWeapon = 0x12A8;
-		//m_iShotsFired
-		DWORD iShotsFired = 0x1418;
-		//m_flFlashDuration
-		DWORD flFlashDuration = 0x1468;
-		//m_aimPunchAngle
-		DWORD aimPunchAngle = 0x1714;
-		//m_aimPunchCache
-		DWORD aimPunchCache = 0x1738;
-		//m_iIDEntIndex
-		DWORD iIDEntIndex = 0x153C;
-
-
+		DWORD angEyeAngles = 0x14F8;
+		DWORD vecLastClipCameraPos = 0x1274;
+		DWORD pClippingWeapon = 0x1290;
+		DWORD iShotsFired = 0x1400;
+		DWORD flFlashDuration = 0x1450;
+		DWORD aimPunchAngle = 0x16FC;
+		DWORD aimPunchCache = 0x1720;
+		DWORD iIDEntIndex = 0x1524;
 		DWORD iTeamNum = 0x3BF;
 		DWORD CameraServices = 0x10E0;
 		DWORD iFovStart = 0x214;
 		DWORD fFlags = 0x3C8;
-		DWORD bSpottedByMask = 0x1630 + 0xC; // entitySpottedState + bSpottedByMask
+		DWORD bSpottedByMask = 0x1618 + 0xC; // entitySpottedState + bSpottedByMask
 	} Pawn;
 
 	struct
@@ -90,17 +68,14 @@ namespace Offset
 		DWORD m_hPawn = 0x5DC;
 		DWORD m_pObserverServices = 0x10C0;
 		DWORD m_hObserverTarget = 0x44;
-		DWORD m_hController = 0x123C;
+		DWORD m_hController = 0x122C;
 	} PlayerController;
 
 	// Never have a try for external skin changer
 	struct
 	{
-		//m_unMusicID
 		DWORD MusicID = 0x40;
-		//m_rank
 		DWORD Rank = 0x44;
-		//m_vecServerAuthoritativeWeaponSlots
 		DWORD AuthoritativeWeaponSlots = 0x70;
 	} Inventory;
 

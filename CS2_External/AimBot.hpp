@@ -12,8 +12,6 @@ extern "C" {
 #include "Entity.h"
 }
 
-#include "TF/Quaternion.h"
-#include "TF/EulerAngle.h"
 
 namespace AimControl
 {
@@ -41,42 +39,24 @@ namespace AimControl
 
         float Yaw, Pitch;
         float Distance, Norm;
-        Vec3 OppPos, AimPos_;
+        Vec3 OppPos;
         int ScreenCenterX = Gui.Window.Size.x / 2;
         int ScreenCenterY = Gui.Window.Size.y / 2;
         float TargetX = 0.f;
         float TargetY = 0.f;
 
+        OppPos = AimPos - LocalPos;
 
-        AimPos_ = Vec3(AimPos);
+        Distance = sqrt(pow(OppPos.x, 2) + pow(OppPos.y, 2));
 
-        OppPos = AimPos_ - LocalPos;
-          
-        if (MenuConfig::RecoilCorrection && GetAsyncKeyState(VK_LBUTTON)) {
-            EulerAngle euler(-Local.Pawn.AimPunchAngle.y, Local.Pawn.AimPunchAngle.x * 0.7f, .0f);
-            Quaternion q;  
-            q.SetEulerAngle(euler);
-            Vec3 opp;
-            q.Mul(OppPos.x, OppPos.y, OppPos.z, opp.x, opp.y, opp.z);
-            OppPos = Vec3(opp);
-            AimPos_ = LocalPos + OppPos;
-        }
-        
-
-
-        Distance = OppPos.Length();
         Yaw = atan2f(OppPos.y, OppPos.x) * 57.295779513 - Local.Pawn.ViewAngle.y;
         Pitch = -atan(OppPos.z / Distance) * 57.295779513 - Local.Pawn.ViewAngle.x;
-
         Norm = sqrt(pow(Yaw, 2) + pow(Pitch, 2));
-
-
-
 
         float halfFov = AimFov * 0.5f;
 
         Vec2 ScreenPos;
-        gGame.View.WorldToScreen(Vec3(AimPos_), ScreenPos);
+        gGame.View.WorldToScreen(Vec3(AimPos), ScreenPos);
 
         if (Norm < halfFov)
         {
@@ -118,8 +98,7 @@ namespace AimControl
                 }
             }
 
-
-
+            if(MenuConfig::RecoilCorrection && GetAsyncKeyState(VK_LBUTTON)) TargetY -= MenuConfig::RecoilCorrectionLength;
 
             if (!Smooth)
             {

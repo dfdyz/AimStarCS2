@@ -12,7 +12,7 @@ namespace Watermark
 		localtime_s(ptm, &now);
 	}
 
-	inline void Render(const CEntity& Local) noexcept
+	inline void Render() noexcept
 	{
 		if (!MenuConfig::WaterMark)
 			return;
@@ -31,9 +31,6 @@ namespace Watermark
 		ImGui::Text("AimStar");
 		ImGui::Text("%d fps", FrameRate != 0.0f ? static_cast<int>(FrameRate) : 0);
 		ImGui::Text("%d:%d:%d", ptm.tm_hour, ptm.tm_min, ptm.tm_sec);
-
-		
-
 		ImGui::End();
 	}
 }
