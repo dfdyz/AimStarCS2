@@ -22,10 +22,6 @@ namespace ESP
 			break;
 		case 3:
 			Rect = Render::Get2DBox(Entity);
-			break;
-		case 4:
-			Rect = Render::Get2DBoneRect(Entity);
-			break;
 		default:
 			break;
 		}
@@ -45,20 +41,31 @@ namespace ESP
 		{
 			ImColor FlatBoxCol = { ESPConfig::BoxColor.Value.x, ESPConfig::BoxColor.Value.y, ESPConfig::BoxColor.Value.z, ESPConfig::BoxAlpha };
 			ImColor FlatBoxVisCol = { ESPConfig::VisibleColor.Value.x, ESPConfig::VisibleColor.Value.y, ESPConfig::VisibleColor.Value.z, ESPConfig::BoxAlpha };
-			
-			if (MenuConfig::BoxType == 0 || MenuConfig::BoxType == 1)
+			switch (MenuConfig::BoxType)
 			{
-				Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3, ESPConfig::BoxRounding);
+			case 0:
 				if (((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) || (LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << Index))) && ESPConfig::VisibleCheck)
 				{
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::VisibleColor & IM_COL32_A_MASK, 3, ESPConfig::BoxRounding);
 					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::VisibleColor, 1.3, ESPConfig::BoxRounding);
 				}
 				else {
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3, ESPConfig::BoxRounding);
 					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::BoxColor, 1.3, ESPConfig::BoxRounding);
 				}
-			}
-			else if (MenuConfig::BoxType == 2)
-			{
+				break;
+			case 1:
+				if (((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) || (LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << Index))) && ESPConfig::VisibleCheck)
+				{
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::VisibleColor & IM_COL32_A_MASK, 3, ESPConfig::BoxRounding);
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::VisibleColor, 1.3, ESPConfig::BoxRounding);
+				}
+				else {
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3, ESPConfig::BoxRounding);
+					Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, ESPConfig::BoxColor, 1.3, ESPConfig::BoxRounding);
+				}
+				break;
+			case 2:
 				if (((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) || (LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << Index))) && ESPConfig::VisibleCheck)
 				{
 					Gui.RectangleFilled({ Rect.x,Rect.y }, { Rect.z,Rect.w }, FlatBoxVisCol, ESPConfig::BoxRounding);
@@ -66,44 +73,9 @@ namespace ESP
 				else {
 					Gui.RectangleFilled({ Rect.x,Rect.y }, { Rect.z,Rect.w }, FlatBoxCol, ESPConfig::BoxRounding);
 				}
+				break;
 			}
-			else if (MenuConfig::BoxType == 3 || MenuConfig::BoxType == 4)
-			{
-				//Outline
-				Gui.Line({ Rect.x, Rect.y }, { Rect.x + Rect.z * 0.25f, Rect.y }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x, Rect.y }, { Rect.x, Rect.y + Rect.w * 0.25f }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x + Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
-				Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z, Rect.y + Rect.w * 0.25f }, ESPConfig::BoxColor & IM_COL32_A_MASK, 3);
 
-				// Main Box Lines
-				if (((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) || (LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << Index))) && ESPConfig::VisibleCheck)
-				{
-					Gui.Line({ Rect.x, Rect.y }, { Rect.x + Rect.z * 0.25f, Rect.y }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y }, { Rect.x, Rect.y + Rect.w * 0.25f }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z, Rect.y + Rect.w * 0.25f }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x + Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::VisibleColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::VisibleColor, 1.3f);
-				}
-				else {
-					Gui.Line({ Rect.x, Rect.y }, { Rect.x + Rect.z * 0.25f, Rect.y }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y }, { Rect.x, Rect.y + Rect.w * 0.25f }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y }, { Rect.x + Rect.z, Rect.y + Rect.w * 0.25f }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x + Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x, Rect.y + Rect.w }, { Rect.x, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z - Rect.z * 0.25f, Rect.y + Rect.w }, ESPConfig::BoxColor, 1.3f);
-					Gui.Line({ Rect.x + Rect.z, Rect.y + Rect.w }, { Rect.x + Rect.z, Rect.y + Rect.w - Rect.w * 0.25f }, ESPConfig::BoxColor, 1.3f);
-				}
-				
-				
-			}
 		}
 
 
@@ -158,6 +130,9 @@ namespace ESP
 		}
 		if (ESPConfig::ShowBoneESP) {
 			ImU32 boneColor = ESPConfig::BoneColor;
+			ImVec2 NeckStart(centerPos.x + 44, centerPos.y + 15);
+			ImVec2 NeckEnd(centerPos.x + 50, centerPos.y + 25);
+			ImGui::GetWindowDrawList()->AddLine(NeckStart, NeckEnd, boneColor, 1.8f); // Head to Neck
 			ImVec2 SpineStart(centerPos.x + 50, centerPos.y + 25);
 			ImVec2 SpineEnd(centerPos.x + 60, centerPos.y + 55);
 			ImGui::GetWindowDrawList()->AddLine(SpineStart, SpineEnd, boneColor, 1.8f); // Neck to Spine
@@ -197,22 +172,16 @@ namespace ESP
 			ImVec2 DR_ArmStart(centerPos.x + 27, centerPos.y + 53);
 			ImVec2 DR_ArmEnd(centerPos.x + 20, centerPos.y + 45);
 			ImGui::GetWindowDrawList()->AddLine(DR_ArmStart, DR_ArmEnd, boneColor, 1.8f); // Right Arm_Down
-		}
-		if (ESPConfig::ShowPenis)
-		{
-			ImU32 PenisCol = ESPConfig::PenisColor;
-			ImVec2 BoneStart(centerPos.x + 62, centerPos.y + 65);
-			ImVec2 BoneEnd(BoneStart.x - 30, BoneStart.y + 5);
-			ImGui::GetWindowDrawList()->AddLine(BoneStart, BoneEnd, PenisCol, 2.0f);
+			
 		}
 		if (ESPConfig::ShowHeadBox) {
 			switch (ESPConfig::HeadBoxStyle)
 			{
 			case 0:
-				ImGui::GetWindowDrawList()->AddCircle({ centerPos.x + 44, centerPos.y + 17 }, 12.0f, ESPConfig::HeadBoxColor, 0, 1.8f);
+				ImGui::GetWindowDrawList()->AddCircle({ centerPos.x + 44, centerPos.y + 17 }, 10.0f, ESPConfig::HeadBoxColor, 0, 1.8f);
 				break;
 			case 1:
-				ImGui::GetWindowDrawList()->AddCircleFilled({ centerPos.x + 44, centerPos.y + 17 }, 12.0f, ESPConfig::HeadBoxColor, 0);
+				ImGui::GetWindowDrawList()->AddCircleFilled({ centerPos.x + 44, centerPos.y + 17 }, 10.0f, ESPConfig::HeadBoxColor, 0);
 			default:
 				break;
 			}
@@ -223,43 +192,29 @@ namespace ESP
 			ImVec2 rectEndPos;
 			ImColor boxColor = ESPConfig::BoxColor;
 
-			rectStartPos = centerPos;
-			rectEndPos = { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y };
-			ImColor filledBoxColor = { boxColor.Value.x, boxColor.Value.y, boxColor.Value.z, ESPConfig::BoxAlpha };
 			switch (MenuConfig::BoxType)
 			{
-			case 0:
-				DrawPreviewBox(rectStartPos, rectEndPos, boxColor, ESPConfig::BoxRounding, 1.3f, false);
-				break;
-			case 1:
-				DrawPreviewBox(rectStartPos, rectEndPos, boxColor, ESPConfig::BoxRounding, 1.3f, false);
-//				rectStartPos = { centerPos.x + 20, centerPos.y + 15 };
-//				rectEndPos = { rectStartPos.x + 50, rectStartPos.y + 132 };
-//				DrawPreviewBox(rectStartPos, rectEndPos, boxColor, ESPConfig::BoxRounding, 1.0f, false);
-				break;
-			case 2:
-				DrawPreviewBox(rectStartPos, rectEndPos, filledBoxColor, ESPConfig::BoxRounding, 0.0f, true);
-				break;
-			case 3:
-				ImGui::GetWindowDrawList()->AddLine(rectStartPos, { rectStartPos.x + rectSize.x * 0.25f, rectStartPos.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine(rectStartPos, { rectStartPos.x, rectStartPos.y + rectSize.y * 0.25f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x * 0.75f, rectStartPos.y + rectSize.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y * 0.75f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x * 0.25f, rectStartPos.y + rectSize.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x, rectStartPos.y + rectSize.y }, { rectStartPos.x, rectStartPos.y + rectSize.y * 0.75f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y }, { rectStartPos.x + rectSize.x * 0.75f, rectStartPos.y}, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y }, { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y * 0.25f }, boxColor, 1.3f);
-				break;
-			case 4:
-				ImGui::GetWindowDrawList()->AddLine(rectStartPos, { rectStartPos.x + rectSize.x * 0.25f, rectStartPos.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine(rectStartPos, { rectStartPos.x, rectStartPos.y + rectSize.y * 0.25f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x * 0.75f, rectStartPos.y + rectSize.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y * 0.75f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x, rectStartPos.y + rectSize.y }, { rectStartPos.x + rectSize.x * 0.25f, rectStartPos.y + rectSize.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x, rectStartPos.y + rectSize.y }, { rectStartPos.x, rectStartPos.y + rectSize.y * 0.75f }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y }, { rectStartPos.x + rectSize.x * 0.75f, rectStartPos.y }, boxColor, 1.3f);
-				ImGui::GetWindowDrawList()->AddLine({ rectStartPos.x + rectSize.x, rectStartPos.y }, { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y * 0.25f }, boxColor, 1.3f);
-				break;
+				case 0:
+					rectStartPos = centerPos;
+					rectEndPos = { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y };
+					DrawPreviewBox(rectStartPos, rectEndPos, boxColor, ESPConfig::BoxRounding, 1.0f, false);
+					break;
+				case 1:
+					rectStartPos = centerPos;
+					rectEndPos = { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y };
+					DrawPreviewBox(rectStartPos, rectEndPos, boxColor, ESPConfig::BoxRounding, 1.0f, false);
+					break;
+					/*
+					rectStartPos = { centerPos.x + 20, centerPos.y + 15 };
+					rectEndPos = { rectStartPos.x + 50, rectStartPos.y + 132 };
+					DrawPreviewBox(rectStartPos, rectEndPos, boxColor, MenuConfig::BoxRounding, 1.0f, false);
+					break;*/
+				case 2:
+					rectStartPos = centerPos;
+					rectEndPos = { rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y };
+					ImColor filledBoxColor = { boxColor.Value.x, boxColor.Value.y, boxColor.Value.z, ESPConfig::BoxAlpha };
+					DrawPreviewBox(rectStartPos, rectEndPos, filledBoxColor, ESPConfig::BoxRounding, 0.0f, true);
+					break;
 			}
 		}
 		if (ESPConfig::ShowHealthBar) {
@@ -267,17 +222,17 @@ namespace ESP
 			if (MenuConfig::HealthBarType == 0) {
 				ImVec2 HBS(centerPos.x - 8, centerPos.y);
 				ImVec2 HBE(centerPos.x - 3, centerPos.y + rectSize.y);
-				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 30.f, ImDrawCornerFlags_All);
+				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 0.0f, ImDrawCornerFlags_All);
 			}
 			if (MenuConfig::HealthBarType == 1) {
 				ImVec2 HBS(centerPos.x, centerPos.y - 6);
 				ImVec2 HBE(centerPos.x + rectSize.x, centerPos.y - 3);
-				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 30.f, ImDrawCornerFlags_All);
+				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 0.0f, ImDrawCornerFlags_All);
 			}
 			if (MenuConfig::HealthBarType == 2) {
 				ImVec2 HBS(centerPos.x, centerPos.y + rectSize.y + 6);
 				ImVec2 HBE(centerPos.x + rectSize.x, centerPos.y + rectSize.y + 3);
-				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 30.f, ImDrawCornerFlags_All);
+				ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, ImColor(96, 246, 113, 220), 0.0f, ImDrawCornerFlags_All);
 			}
 		}
 		if (MenuConfig::ShowLineToEnemy) {

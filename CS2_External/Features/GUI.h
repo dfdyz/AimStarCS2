@@ -26,7 +26,7 @@ namespace GUI
 				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&ESPConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::SameLine();
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth);
-				ImGui::Combo("##BoxStyle", &MenuConfig::BoxType, "Normal\0Edge\0Flat\0Corner\0Corner Edge\0");
+				ImGui::Combo("##BoxStyle", &MenuConfig::BoxType, "Normal\0Edge\0Flat\0");
 				if (MenuConfig::BoxType == 2)
 					ImGui::SliderFloat("Flat Box Alpha", &ESPConfig::BoxAlpha, 0.0f, 1.0f, "%.2f", ImGuiSliderFlags_NoInput);
 				if (ESPConfig::ShowBoxESP)
@@ -102,6 +102,7 @@ namespace GUI
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::FovCircleColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::Checkbox("Visible Only", &MenuConfig::VisibleCheck);
+				ImGui::SameLine();
 				ImGui::Checkbox("On Ground Only", &MenuConfig::AirJump);
 
 				ImGui::Checkbox("Recoil Correction", &MenuConfig::RecoilCorrection);
@@ -160,7 +161,7 @@ namespace GUI
 
 				Gui.MyCheckBox("Enabled", &MenuConfig::ShowRadar);
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth + 20);
-				ImGui::Combo("Style", &MenuConfig::RadarType, "Circle\0Arrow\0Circle & Arrow\0");
+				ImGui::Combo("Style", &MenuConfig::RadarType, "Circle\0Arrow\0Circle & Arrow");
 				ImGui::Checkbox("Custom", &MenuConfig::customRadar);
 
 				if (MenuConfig::customRadar)
@@ -218,7 +219,7 @@ namespace GUI
 				Gui.MyCheckBox("Enabled", &CrosshairConfig::ShowCrossHair);
 
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth + 50);
-				if (ImGui::Combo("Presets", &CrosshairConfig::crosshairPreset, "Custom\0Dot\0Circle Dot 1\0Circle Dot 2\0Crosshair Small\0Crosshair Medium\0Crosshair Dot\0Square\0"))
+				if (ImGui::Combo("Presets", &CrosshairConfig::crosshairPreset, "Custom\0Dot\0Circle Dot 1\0Circle Dot 2\0Crosshair Small\0Crosshair Medium\0Crosshair Dot"))
 					Render::UpdateCrosshairPreset(CrosshairConfig::crosshairPreset);
 
 				ImGui::Text("Crosshair Color");
@@ -235,24 +236,22 @@ namespace GUI
 				ImGui::Checkbox("Crossline", &CrosshairConfig::drawCrossline);
 				if (CrosshairConfig::drawCrossline)
 				{
-					ImGui::SliderInt("Horizontal Length", &CrosshairConfig::HorizontalLength, 1, 100, "%d", ImGuiSliderFlags_NoInput);
-					ImGui::SliderInt("Vertical Length", &CrosshairConfig::VerticalLength, 1, 100, "%d", ImGuiSliderFlags_NoInput);
-					ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 1, 50, "%d", ImGuiSliderFlags_NoInput);
+					ImGui::SliderInt("Horizontal Length", &CrosshairConfig::HorizontalLength, 1, 100, "%d");
+					ImGui::SliderInt("Vertical Length", &CrosshairConfig::VerticalLength, 1, 100, "%d");
+					ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 1, 50, "%d");
 					//				ImGui::Checkbox("Dynamic Gap", &CrosshairConfig::DynamicGap);
-					ImGui::SliderInt("Thickness", &CrosshairConfig::Thickness, 1, 20, "%d", ImGuiSliderFlags_NoInput);
 					ImGui::Checkbox("T Style", &CrosshairConfig::tStyle);
 				}
 
 				ImGui::Separator();
 				ImGui::Checkbox("Circle", &CrosshairConfig::drawCircle);
 				if (CrosshairConfig::drawCircle)
-					ImGui::SliderFloat("Circle Radius", &CrosshairConfig::CircleRadius, 0.0f, 50.0f, "%.1f", ImGuiSliderFlags_NoInput);
+					ImGui::SliderFloat("Circle Radius", &CrosshairConfig::CircleRadius, 0.0f, 50.0f, "%.1f");
 
 				ImGui::Separator();
 				ImGui::Checkbox("Target Crosshair", &CrosshairConfig::showTargeting);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##CrosshairColor", reinterpret_cast<float*>(&CrosshairConfig::TargetedColor), ImGuiColorEditFlags_NoInputs);
-				ImGui::Checkbox("TeamCheck", &CrosshairConfig::TeamCheck);
 
 				ImGui::EndTabItem();
 			}
@@ -306,7 +305,7 @@ namespace GUI
 				// Since it's already the MIT license, there's no need to do that.
 				// ImGui::TextColored(ImColor(255, 0, 0, 255), "Reselling prohibited");
 
-				ImGui::TextColored(ImColor(0, 200, 255, 255), "Last update: 2023-11-1");
+				ImGui::TextColored(ImColor(0, 200, 255, 255), "Last update: 2023-10-29");
 				Gui.OpenWebpageButton(ICON_FA_COPY " Source Code", "https://github.com/CowNowK/AimStarCS2");
 				ImGui::SameLine();
 				Gui.OpenWebpageButton(ICON_FA_COMMENT_DOTS " Join Discord", "https://discord.gg/MzbmSRaU3p");
@@ -350,7 +349,7 @@ namespace GUI
 				ImGui::Checkbox("Box", &ESPConfig::ShowBoxESP);
 				ImGui::SameLine();
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth);
-				ImGui::Combo("##BoxStyle", &MenuConfig::BoxType, "Normal\0Edge\0Flat\0Corner\0Corner Edge\0");
+				ImGui::Combo("##BoxStyle", &MenuConfig::BoxType, "Normal\0Edge\0Flat");
 				ImGui::SetNextItemWidth(MenuConfig::SliderWidth);
 				if (MenuConfig::BoxType == 2)
 					ImGui::SliderFloat("Flat Box Alpha", &ESPConfig::BoxAlpha, 0.0f, 1.0f, "%.2f", ImGuiSliderFlags_NoInput);
@@ -392,7 +391,7 @@ namespace GUI
 			{
 				ImGui::Checkbox("Enabled", &MenuConfig::ShowRadar);
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth + 20);
-				ImGui::Combo("Style", &MenuConfig::RadarType, "Circle\0Arrow\0Circle & Arrow\0");
+				ImGui::Combo("Style", &MenuConfig::RadarType, "Circle\0Arrow\0Circle & Arrow");
 				ImGui::Checkbox("Custom", &MenuConfig::customRadar);
 
 				if (MenuConfig::customRadar)
@@ -422,7 +421,7 @@ namespace GUI
 				ImGui::Checkbox("Enabled", &CrosshairConfig::ShowCrossHair);
 
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth + 50);
-				if (ImGui::Combo("Presets", &CrosshairConfig::crosshairPreset, "Custom\0Dot\0Circle Dot 1\0Circle Dot 2\0Crosshair Small\0Crosshair Medium\0Crosshair Dot\0Square\0"))
+				if (ImGui::Combo("Presets", &CrosshairConfig::crosshairPreset, "Custom\0Dot\0Circle Dot 1\0Circle Dot 2\0Crosshair Small\0Crosshair Medium\0Crosshair Dot"))
 					Render::UpdateCrosshairPreset(CrosshairConfig::crosshairPreset);
 
 				ImGui::Checkbox("Center Dot", &CrosshairConfig::drawDot);
@@ -443,7 +442,6 @@ namespace GUI
 					ImGui::SetNextItemWidth(MenuConfig::SliderWidth);
 					ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 1, 50, "%d", ImGuiColorEditFlags_NoInputs);
 					//				ImGui::Checkbox("Dynamic Gap", &CrosshairConfig::DynamicGap);
-					ImGui::SliderInt("Thickness", &CrosshairConfig::Thickness, 1, 20, "%d", ImGuiSliderFlags_NoInput);
 					ImGui::Checkbox("T Style", &CrosshairConfig::tStyle);
 				}
 
@@ -455,7 +453,6 @@ namespace GUI
 
 				ImGui::Separator();
 				ImGui::Checkbox("Target Crosshair", &CrosshairConfig::showTargeting);
-				ImGui::Checkbox("TeamCheck", &CrosshairConfig::TeamCheck);
 			}
 		} ImGui::End();
 
@@ -476,7 +473,6 @@ namespace GUI
 
 				ImGui::Checkbox("Draw Fov", &ESPConfig::DrawFov);
 				ImGui::Checkbox("Visible Only", &MenuConfig::VisibleCheck);
-				ImGui::Checkbox("On Ground Only", &MenuConfig::AirJump);
 
 				ImGui::Checkbox("Recoil Correction", &MenuConfig::RecoilCorrection);
 				if (MenuConfig::RecoilCorrection) {
@@ -580,9 +576,9 @@ namespace GUI
 				if (ImGui::Combo("Theme", &MenuConfig::MenuStyle, "Default\0Hacker\0Red\0"))
 					StyleChanger::UpdateSkin(MenuConfig::MenuStyle);
 				ImGui::SetNextItemWidth(MenuConfig::ComboWidth);
-				ImGui::Combo("Style", &MenuConfig::WindowStyle, "Window\0Collapse\0");
+				if (ImGui::Combo("Style", &MenuConfig::WindowStyle, "Window\0Collapse\0"))
 				ImGui::EndTabItem();
-			} 
+			}
 			ConfigMenu::RenderConfigMenu();
 
 		} ImGui::End();

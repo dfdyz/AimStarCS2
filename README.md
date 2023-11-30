@@ -19,7 +19,7 @@ External Cheat for CS2
 ## Features
 
 <details>
-<summary>Visual</summary>
+<summary>ESP</summary>
   
 - BoxESP
   
@@ -31,13 +31,39 @@ External Cheat for CS2
 
 - DistanceESP
 
-- HealthESP
+- ~~SexyESP~~
   
-- Glow
+- HealthBar
   
-- Radar
+- SnapLine
+  
+- EyeRay
 
-- Crosshairs
+</details>
+
+<details>
+<summary>Aimbot</summary>
+
+- Draw Fov
+
+- Bone
+
+- Smooth
+
+- ~~RCS~~
+
+</details>
+
+<details>
+<summary>Radar</summary>
+
+- Styles
+
+- Radar Proportion
+
+- Radar Range
+
+- Radar Background
 
 </details>
 
@@ -46,9 +72,9 @@ External Cheat for CS2
 
 - Bunnyhop
 
-- Aimbot
-
 - Triggerbot
+
+- Custom Discoloration Crosshair
 
 - Headshot Line
 
@@ -68,5 +94,3 @@ External Cheat for CS2
 > Sometimes the aimbot malfunctions and doesn't work properly.
 > 
 > Sometimes the ESP renders unclear large boxes or keeps the skeleton stationary.
->
-> Glow blinking
