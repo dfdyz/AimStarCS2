@@ -48,9 +48,15 @@ void Misc::Watermark() noexcept
 	FrameRate = ImGui::GetIO().Framerate;
 	getCurrentTime(&ptm);
 
+
+
 	ImGui::Text("AimStar | %d fps | %02d:%02d:%02d",
 		FrameRate != 0.0f ? static_cast<int>(FrameRate) : 0,
 		ptm.tm_hour, ptm.tm_min, ptm.tm_sec);
+
+	//ImGui::Text("RCS _(%.2f, %.2f)", AimControl::_Angles.x, AimControl::_Angles.y);
+	ImGui::Text("RCS (%.2f, %.2f)", AimControl::Angles.x, AimControl::Angles.y);
+
 	ImGui::End();
 }
 

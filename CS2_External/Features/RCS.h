@@ -12,7 +12,7 @@ namespace RCS
 
 	inline void GetAngles(const CEntity& Local, Vec2& Angles)
 	{
-		auto oldPunch = Vec2{ };
+		Vec2 static oldPunch = Vec2{0, 0 };
 		auto shotsFired = Local.Pawn.ShotsFired;
 
 		int ScreenCenterX = Gui.Window.Size.x / 2;
@@ -43,8 +43,6 @@ namespace RCS
 			while (newAngles.y < -180.f)
 				newAngles.y += 360.f;
 
-			newAngles.x += ScreenCenterX;
-			newAngles.y += ScreenCenterY;
 			Angles = newAngles;
 		}
 		else
@@ -53,8 +51,9 @@ namespace RCS
 		}
 	}
 
-	inline void Run(const CEntity& Local, Vec2 AimAngles, bool isAimbotWorking)
+	inline void Run(const CEntity& Local, Vec2 &AimAngles, bool isAimbotWorking)
 	{
+		//std::cout << "ShotsFired? " << (int)Local.Pawn.ShotsFired << std::endl;
 		if (Local.Pawn.ShotsFired > RCSBullet)
 		{
 			Vec2 PunchAngle;
@@ -65,6 +64,10 @@ namespace RCS
 
 			AimAngles.x = PunchAngle.x;
 			AimAngles.y = PunchAngle.y;
+		}
+		else
+		{
+			AimAngles = Vec2{ 0,0 };
 		}
 		
 		if (!isAimbotWorking)

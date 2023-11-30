@@ -55,8 +55,10 @@ namespace MyConfigSaver {
         configFile << "ShowLineToEnemy " << MenuConfig::ShowLineToEnemy << std::endl;
         configFile << "RCSScale.x " << AimControl::RCSScale.x << std::endl;
         configFile << "RCSScale.y " << AimControl::RCSScale.y << std::endl;
+        configFile << "RCS " << MenuConfig::RCS << std::endl;
         configFile << "ShowWeaponESP " << ESPConfig::ShowWeaponESP << std::endl;
-        configFile << "Smooth " << AimControl::Smooth << std::endl;
+        configFile << "SmoothX " << AimControl::SmoothX << std::endl;
+        configFile << "SmoothY " << AimControl::SmoothY << std::endl;
         configFile << "ShowFovLine " << MenuConfig::ShowFovLine << std::endl;
         configFile << "ShowEyeRay " << ESPConfig::ShowEyeRay << std::endl;
         configFile << "ShowPlayerName " << ESPConfig::ShowPlayerName << std::endl;
@@ -179,8 +181,10 @@ namespace MyConfigSaver {
                 else if (key == "ShowLineToEnemy") iss >> MenuConfig::ShowLineToEnemy;
                 else if (key == "RCSScale.x") iss >> AimControl::RCSScale.x;
                 else if (key == "RCSScale.y") iss >> AimControl::RCSScale.y;
+                else if (key == "RCS") iss >> MenuConfig::RCS;
                 else if (key == "ShowWeaponESP") iss >> ESPConfig::ShowWeaponESP;
-                else if (key == "Smooth") iss >> AimControl::Smooth;
+                else if (key == "SmoothX") iss >> AimControl::SmoothX;
+                else if (key == "SmoothY") iss >> AimControl::SmoothY;
                 else if (key == "ShowFovLine") iss >> MenuConfig::ShowFovLine;
                 else if (key == "ShowEyeRay") iss >> ESPConfig::ShowEyeRay;
                 else if (key == "ShowPlayerName") iss >> ESPConfig::ShowPlayerName;

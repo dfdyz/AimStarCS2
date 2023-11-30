@@ -176,6 +176,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sources\Language.h" />
     <ClInclude Include="Sources\WeaponIcon.h" />
+    <ClInclude Include="TF\Quaternion.h" />
     <ClInclude Include="TriggerBot.h" />
     <ClInclude Include="Utils\ConfigMenu.hpp" />
     <ClInclude Include="Utils\ConfigSaver.hpp" />
@@ -207,7 +208,10 @@
     <ClCompile Include="OS-ImGui\OS-ImGui.cpp" />
     <ClCompile Include="OS-ImGui\OS-ImGui_Base.cpp" />
     <ClCompile Include="OS-ImGui\OS-ImGui_External.cpp" />
-    <ClCompile Include="Radar\Radar.cpp" />
+    <ClCompile Include="Radar\Radar.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MaxSpeed</Optimization>
+    </ClCompile>
+    <ClCompile Include="TF\Quaternion.cpp" />
     <ClCompile Include="TriggerBot.cpp" />
     <ClCompile Include="Utils\ConfigMenu.cpp" />
     <ClCompile Include="Utils\ConfigSaver.cpp" />

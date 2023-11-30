@@ -137,6 +137,7 @@
     <ClInclude Include="Utils\Handles.h" />
     <ClInclude Include="Features\RCS.h" />
     <ClInclude Include="Sources\Language.h" />
+    <ClInclude Include="TF\Quaternion.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -202,6 +203,7 @@
     <ClCompile Include="Features\Mouse.cpp" />
     <ClCompile Include="Features\Glow.cpp" />
     <ClCompile Include="Features\Misc.cpp" />
+    <ClCompile Include="TF\Quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CS2_External.rc" />

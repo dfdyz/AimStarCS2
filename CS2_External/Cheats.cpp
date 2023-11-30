@@ -76,6 +76,7 @@ void Cheats::RenderCrossHair(ImDrawList* drawList) noexcept
 		Render::DrawCrossHair(drawList, ImVec2(ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2), ImGui::ColorConvertFloat4ToU32(CrosshairConfig::CrossHairColor));
 }
 
+
 void Cheats::Run()
 {	
 	// Show menu
@@ -137,7 +138,6 @@ void Cheats::Run()
 	float MaxAimDistance = 100000;
 	Vec3  HeadPos{ 0,0,0 };
 	Vec3  AimPos{ 0,0,0 };
-	Vec2  Angles{ 0,0 };
 
 	// Radar Data
 	Base_Radar Radar;
@@ -192,9 +192,9 @@ void Cheats::Run()
 			MaxAimDistance = DistanceToSight;
 
 			if (!MenuConfig::VisibleCheck ||
-				Entity.Pawn.bSpottedByMask & (DWORD64(1) << (LocalPlayerControllerIndex)) ||
-				LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << (i)))
-			{
+				Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex) ||
+				LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i)
+			){
 				AimPos = Entity.GetBone().BonePosList[MenuConfig::AimPositionIndex].Pos;
 				if (MenuConfig::AimPositionIndex == BONEINDEX::head)
 					AimPos.z -= 1.f;
@@ -269,12 +269,14 @@ void Cheats::Run()
 	bmb::RenderWindow();
 
 	// RCS
+
+	/*
 	if (MenuConfig::RCS)
 	{
-		RCS::GetAngles(LocalEntity, Angles);
-		std::cout << "(" << Angles.x << ", " << Angles.y << ")" << std::endl;
-		RCS::Run(LocalEntity, Angles, MenuConfig::AimBot);
-	}
+		RCS::GetAngles(LocalEntity, AimControl::Angles);
+		//std::cout << "(" << Angles.x << ", " << Angles.y << ")" << std::endl;
+		RCS::Run(LocalEntity, AimControl::Angles, MenuConfig::AimBot);
+	}*/
 	// Aimbot
 	if (MenuConfig::AimBot)
 	{
@@ -298,7 +300,7 @@ void Cheats::Run()
 			}
 		}
 
-		if (MenuConfig::AimToggleMode && (GetAsyncKeyState(AimControl::HotKey) & 0x8000) && currentTick - lastTick >= 200)
+		if (MenuConfig::AimToggleMode && (GetAsyncKeyState(AimControl::HotKey) & 0x8000) && currentTick - lastTick >= 100)
 		{
 			AimControl::switchToggle();
 			lastTick = currentTick;

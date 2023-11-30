@@ -122,11 +122,16 @@ namespace GUI
 				ImGui::Checkbox(Lang::AimbotText.DrawFov, &ESPConfig::DrawFov);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::FovCircleColor), ImGuiColorEditFlags_NoInputs);
-				//ImGui::Checkbox(Lang::AimbotText.VisCheck, &MenuConfig::VisibleCheck);
+				ImGui::Checkbox(Lang::AimbotText.VisCheck, &MenuConfig::VisibleCheck);
 				ImGui::Checkbox(Lang::AimbotText.JumpCheck, &MenuConfig::AirJump);
 
+
+				
 				ImGui::SliderFloat(Lang::AimbotText.FovSlider, &AimControl::AimFov, 0.0f, 25.0f, "%.1f", ImGuiSliderFlags_Logarithmic | ImGuiColorEditFlags_NoInputs);
-				ImGui::SliderFloat(Lang::AimbotText.SmoothSlider, &AimControl::Smooth, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
+				sprintf_s(TempText, "%s%s", Lang::AimbotText.SmoothSlider, "_X");
+				ImGui::SliderFloat(TempText, &AimControl::SmoothX, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
+				sprintf_s(TempText, "%s%s", Lang::AimbotText.SmoothSlider, "_Y");
+				ImGui::SliderFloat(TempText, &AimControl::SmoothY, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
 				if (ImGui::Combo(Lang::AimbotText.BoneList, &MenuConfig::AimPosition, "Head\0Neck\0Chest\0Penis"))
 				{
 					switch (MenuConfig::AimPosition)
@@ -148,13 +153,13 @@ namespace GUI
 					}
 				}
 				ImGui::TextColored(ImColor(101, 255, 0, 255), Lang::AimbotText.Tip);
-				/*
+				
 				ImGui::NewLine();
 				ImGui::SeparatorText("Recoil Control System");
 				Gui.MyCheckBox("Enabled", &MenuConfig::RCS);
 				ImGui::SliderInt("Start Bullet", &RCS::RCSBullet, 1, 6, "%d");
-				ImGui::SliderFloat("Yaw", &AimControl::RCSScale.x, 0.f, 2.f, "%.1f");
-				ImGui::SliderFloat("Pitch", &AimControl::RCSScale.y, 0.f, 2.f, "%.1f");*/
+				ImGui::SliderFloat("Yaw", &AimControl::RCSScale.y, -2.f, 2.f, "%.1f");
+				ImGui::SliderFloat("Pitch", &AimControl::RCSScale.x, -2.f, 2.f, "%.1f");
 
 				ImGui::EndTabItem();
 			}
@@ -537,7 +542,8 @@ namespace GUI
 				ImGui::SetNextItemWidth(MenuConfig::SliderWidth);
 				ImGui::SliderFloat("Fov", &AimControl::AimFov, 0.0f, 25.0f, "%.1f", ImGuiSliderFlags_Logarithmic | ImGuiColorEditFlags_NoInputs);
 				ImGui::SetNextItemWidth(MenuConfig::SliderWidth);
-				ImGui::SliderFloat("Smooth", &AimControl::Smooth, 1.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
+				ImGui::SliderFloat("SmoothX", &AimControl::SmoothX, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
+				ImGui::SliderFloat("SmoothY", &AimControl::SmoothY, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
 				if (ImGui::Combo("Bone", &MenuConfig::AimPosition, "Head\0Neck\0Chest\0Penis"))
 				{
 					switch (MenuConfig::AimPosition)
