@@ -98,8 +98,6 @@ namespace AimControl
                 }
             }
 
-            if(MenuConfig::RecoilCorrection && GetAsyncKeyState(VK_LBUTTON)) TargetY -= MenuConfig::RecoilCorrectionLength;
-
             if (!Smooth)
             {
                 mouse_event(MOUSEEVENTF_MOVE, (DWORD)(TargetX), (DWORD)(TargetY), NULL, NULL);
