@@ -29,6 +29,7 @@ Open-Source External Cheat For CS2
 ## 📸 Screenshots
 ![](/Image1.png)
 ![](/Image2.png)
+
 ## 📋 Features
 <details>
 <summary>Visual</summary>
