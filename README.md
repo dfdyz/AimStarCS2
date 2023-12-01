@@ -8,14 +8,10 @@
 <a href="LICENSE.txt"><img src="https://img.shields.io/github/license/CowNowK/AimStarCS2.svg?style=flat"></a>
 </p>
 
+# Hello everyone, this repo is outdated, so it will not be updated soon or be fixed, please take a look about new repo   [CowNowK/AimStar](https://github.com/CowNowK/AimStar)
+
 ## ❗ Info
 Open-Source External Cheat For CS2
-Releases posting every cs2 update
-
-I made a discord server, where you can get support and much more! Join to us!
-[**__Discord__**](https://discord.gg/yxVMvvwRzD)
-
-history starts again, entp hacked me and destroyed server, join because i recovered it fully
 
 ## ⚠️ Notice
 **Detected:** *Your account will be banned without VAC Bypass*
@@ -29,9 +25,7 @@ history starts again, entp hacked me and destroyed server, join because i recove
 > Sometimes the ESP renders unclear large boxes or keeps the skeleton stationary.
 >
 > Glow blinking
-***
-> I will only update this project on weekends, i dont have enough time even for opening discord
-***
+
 ## 📸 Screenshots
 ![](/Image1.png)
 ![](/Image2.png)
