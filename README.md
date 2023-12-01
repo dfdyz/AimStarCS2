@@ -60,7 +60,9 @@ Open-Source External Cheat For CS2
 - Cheat List
 - Bomb Timer
 </details>
+
 ## ⚠️ Disclamers
+
 - Features copied from UnknownCheats
   - [Glow](https://www.unknowncheats.me/forum/counter-strike-2-a/604503-glow-external.html)
   - [Weapon Icon](https://www.unknowncheats.me/forum/counter-strike-2-a/608799-weapon-icon-esp.html)
@@ -70,6 +72,7 @@ Open-Source External Cheat For CS2
   - Corner Box
   - Mouse Aimbot
 - Major help from Shinyaluvs
+
 # 👥 Contributors
 [![@nx0ri](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/nx0ri&h=50&w=50&mask=circle&maxage=7d '@nx0ri')](https://github.com/nx0ri)
 [![@world-onetop](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/world-onetop&h=50&w=50&mask=circle&maxage=7d '@world-onetop')](https://github.com/world-onetop)
@@ -82,5 +85,6 @@ Open-Source External Cheat For CS2
 [![@Fr0go1](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/Fr0go1&h=50&w=50&mask=circle&maxage=7d '@Fr0go1')](https://github.com/Fr0go1)
 [![@TKazer](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/TKazer&h=50&w=50&mask=circle&maxage=7d '@TKazer')](https://github.com/TKazer)
 [![@9xN](https://images.weserv.nl/?url=https://avatars.githubusercontent.com/9xN&h=50&w=50&mask=circle&maxage=7d '@9xN')](https://github.com/9xN)
+
 ## ⭐ Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=CowNowK/AimStarCS2&type=Date)](https://star-history.com/#CowNowK/AimStarCS2&Date)
