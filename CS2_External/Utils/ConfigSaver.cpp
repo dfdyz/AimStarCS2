@@ -50,12 +50,14 @@ namespace MyConfigSaver {
         configFile << "RCSBullet " << RCS::RCSBullet << std::endl;
         configFile << "ShowHealthBar " << ESPConfig::ShowHealthBar << std::endl;
         configFile << "AimFov " << AimControl::AimFov << std::endl;
+        configFile << "ImmunityCheck " << AimControl::ImmunityCheck << std::endl;
         configFile << "FovLineSize " << MenuConfig::FovLineSize << std::endl;
         configFile << "AimBotHotKey " << MenuConfig::AimBotHotKey << std::endl;
         configFile << "ShowLineToEnemy " << MenuConfig::ShowLineToEnemy << std::endl;
         configFile << "RCSScale.x " << AimControl::RCSScale.x << std::endl;
         configFile << "RCSScale.y " << AimControl::RCSScale.y << std::endl;
         configFile << "RCS " << MenuConfig::RCS << std::endl;
+        configFile << "RCS_AimBotOnly " << MenuConfig::RCS_AimBotOnly << std::endl;
         configFile << "ShowWeaponESP " << ESPConfig::ShowWeaponESP << std::endl;
         configFile << "SmoothX " << AimControl::SmoothX << std::endl;
         configFile << "SmoothY " << AimControl::SmoothY << std::endl;
@@ -176,12 +178,14 @@ namespace MyConfigSaver {
                 else if (key == "RCSBullet") iss >> RCS::RCSBullet;
                 else if (key == "ShowHealthBar") iss >> ESPConfig::ShowHealthBar;
                 else if (key == "AimFov") iss >> AimControl::AimFov;
+                else if (key == "ImmunityCheck") iss >> AimControl::ImmunityCheck;
                 else if (key == "FovLineSize") iss >> MenuConfig::FovLineSize;
                 else if (key == "AimBotHotKey") { iss >> MenuConfig::AimBotHotKey; AimControl::SetHotKey(MenuConfig::AimBotHotKey); }
                 else if (key == "ShowLineToEnemy") iss >> MenuConfig::ShowLineToEnemy;
                 else if (key == "RCSScale.x") iss >> AimControl::RCSScale.x;
                 else if (key == "RCSScale.y") iss >> AimControl::RCSScale.y;
                 else if (key == "RCS") iss >> MenuConfig::RCS;
+                else if (key == "RCS_AimBotOnly") iss >> MenuConfig::RCS_AimBotOnly;
                 else if (key == "ShowWeaponESP") iss >> ESPConfig::ShowWeaponESP;
                 else if (key == "SmoothX") iss >> AimControl::SmoothX;
                 else if (key == "SmoothY") iss >> AimControl::SmoothY;
@@ -252,7 +256,6 @@ namespace MyConfigSaver {
                 else if (key == "SnaplinePos") iss >> MenuConfig::LinePos;
                 else if (key == "CustomRadar") iss >> MenuConfig::customRadar;
                 else if (key == "MenuStyle") iss >> MenuConfig::MenuStyle;
-
             }
         }
 

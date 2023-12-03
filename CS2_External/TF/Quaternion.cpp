@@ -19,17 +19,17 @@ void Quaternion::Mul(float _x, float _y, float _z, float& ox, float& oy, float& 
 
 void Quaternion::SetEulerAngle(float Yaw, float Pitch, float Roll)
 {
-	float fCosHRoll = cos(Roll * .5f);
-	float fSinHRoll = sin(Roll * .5f);
-	float fCosHPitch = cos(Pitch * .5f);
-	float fSinHPitch = sin(Pitch * .5f);
-	float fCosHYaw = cos(Yaw * .5f);
-	float fSinHYaw = sin(Yaw * .5f);
+	float cy = cos(Yaw * 0.5f);
+	float sy = sin(Yaw * 0.5f);
+	float cp = cos(Pitch * 0.5f);
+	float sp = sin(Pitch * 0.5f);
+	float cr = cos(Roll * 0.5f);
+	float sr = sin(Roll * 0.5f);
 
-	w = fCosHRoll * fCosHPitch * fCosHYaw + fSinHRoll * fSinHPitch * fSinHYaw;
-	x = fCosHRoll * fSinHPitch * fCosHYaw + fSinHRoll * fCosHPitch * fSinHYaw;
-	y = fCosHRoll * fCosHPitch * fSinHYaw - fSinHRoll * fSinHPitch * fCosHYaw;
-	z = fSinHRoll * fCosHPitch * fCosHYaw - fCosHRoll * fSinHPitch * fSinHYaw;
+	w = cy * cp * cr + sy * sp * sr;
+	x = cy * cp * sr - sy * sp * cr;
+	y = sy * cp * sr + cy * sp * cr;
+	z = sy * cp * cr - cy * sp * sr;
 }
 
 void Quaternion::GetEulerAngle(float &r, float &p, float y) const

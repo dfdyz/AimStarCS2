@@ -26,11 +26,14 @@ namespace Offset
 	}Entity;
 	struct
 	{
-		DWORD BulletServices = 0x16B0;
+		DWORD BulletServices = 0x16B0; //m_pBulletServices 
 		DWORD TotalHit = 0x40;
 		DWORD Pos = 0x1224;	// m_vOldOrigin
-		DWORD MaxHealth = 0x328;
+		DWORD MaxHealth = 0x328; //m_iMaxHealth
 		DWORD CurrentHealth = 0x32C; // m_iHealth
+
+		DWORD m_bGunGameImmunity = 0x13BC;
+
 		DWORD GameSceneNode = 0x310;
 		DWORD BoneArray = 0x1E0;
 		DWORD angEyeAngles = 0x1510;
@@ -100,6 +103,5 @@ namespace Offset
 		const std::string ForceJump = "48 8B 05 ?? ?? ?? ?? 48 8D 1D ?? ?? ?? ?? 48 89 45";
 		const std::string PlantedC4 = "48 8B 15 ?? ?? ?? ?? FF C0 48 8D 4C 24";
 	}
-
 	bool UpdateOffsets();
 }

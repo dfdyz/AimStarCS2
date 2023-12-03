@@ -50,6 +50,8 @@ bool CEntity::UpdatePawn(const DWORD64& PlayerPawnAddress)
 		return false;
 	if (!this->Pawn.GetAimPunchCache())
 		return false;
+	if (!this->Pawn.GetImmunity())
+		return false;
 	if (!this->Pawn.BoneData.UpdateAllBoneData(PlayerPawnAddress))
 		return false;
 
@@ -155,6 +157,11 @@ bool PlayerPawn::GetTeamID()
 bool PlayerPawn::GetAimPunchCache()
 {
 	return GetDataAddressWithOffset<C_UTL_VECTOR>(Address, Offset::Pawn.aimPunchCache, this->AimPunchCache);
+}
+
+bool PlayerPawn::GetImmunity()
+{
+	return GetDataAddressWithOffset<bool>(Address, Offset::Pawn.m_bGunGameImmunity, this->Immunity);
 }
 
 DWORD64 PlayerController::GetPlayerPawnAddress()

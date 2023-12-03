@@ -9,6 +9,7 @@
 namespace RCS
 {
 	inline int RCSBullet = 1;
+	inline Vec2 AngleLast = Vec2{ 0, 0 };
 
 	inline void GetAngles(const CEntity& Local, Vec2& Angles)
 	{
@@ -62,13 +63,13 @@ namespace RCS
 			if (!ProcessMgr.ReadMemory<Vec2>(Local.Pawn.AimPunchCache.Data + (Local.Pawn.AimPunchCache.Count - 1) * sizeof(Vec3), PunchAngle))
 				return;
 
-			AimAngles.x = PunchAngle.x;
-			AimAngles.y = PunchAngle.y;
+			AimAngles = PunchAngle;
 		}
 		else
 		{
 			AimAngles = Vec2{ 0,0 };
 		}
+		
 		
 		if (!isAimbotWorking)
 		{

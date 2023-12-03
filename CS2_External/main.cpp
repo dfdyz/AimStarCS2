@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <KnownFolders.h>
 #include <ShlObj.h>
+#include "Utils\ConfigSaver.hpp"
 
 namespace fs = std::filesystem;
 
@@ -91,6 +92,11 @@ int main()
 			std::cerr << "[Info] Error: Failed to create the config directory." << std::endl;
 			goto END;
 		}
+	}
+
+	if (fs::exists(MenuConfig::path + "\\Default.config")) {
+		MyConfigSaver::LoadConfig("Default.config");
+		std::cout << "[Info] Load Default config." << std::endl;
 	}
 
 	if (fs::exists(MenuConfig::SoundPath))

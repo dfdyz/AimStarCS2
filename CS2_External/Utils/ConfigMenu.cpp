@@ -185,6 +185,7 @@ namespace ConfigMenu {
 		MenuConfig::HeadShootLineColor = ImColor(255, 255, 255, 200);
 		MenuConfig::AimBotHotKey = 0;
 		AimControl::SetHotKey(MenuConfig::AimBotHotKey);
+		AimControl::ImmunityCheck = true;
 		MenuConfig::ShowLineToEnemy = false;
 		MenuConfig::FovLineSize = 60.0f;
 		TriggerBot::TriggerDelay = 90;

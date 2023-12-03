@@ -130,6 +130,44 @@ void Cheats::Run()
 	if (!ServerEntity.UpdateServerPawn(ServerPawnAddress) && !MenuConfig::WorkInSpec)
 		return;
 
+
+
+	if (GetAsyncKeyState(VK_ADD) & 0x8000 && currentTick - lastTick >= 150) {
+		AimControl::Mode += 1;
+		if (AimControl::Mode > 2) AimControl::Mode = 0;
+		switch (AimControl::Mode)
+		{
+		case -1:
+			MenuConfig::RCS = true;
+		case 0:
+			MenuConfig::AimBot = true;
+			MenuConfig::TriggerBot = false;
+			break;
+		case 1:
+			MenuConfig::AimBot = false;
+			MenuConfig::TriggerBot = true;
+			break;
+		case 2:
+			MenuConfig::AimBot = true;
+			MenuConfig::TriggerBot = true;
+			break;
+		case 3:
+			MenuConfig::RCS = false;
+			MenuConfig::AimBot = false;
+			MenuConfig::TriggerBot = false;
+			break;
+		default:
+			break;
+		}
+		lastTick = currentTick;
+	}
+	if (GetAsyncKeyState(VK_SUBTRACT) & 0x8000 && currentTick - lastTick >= 150) {
+		MenuConfig::RCS_AimBotOnly = !MenuConfig::RCS_AimBotOnly;
+		lastTick = currentTick;
+	}
+
+
+
 	// HealthBar Map
 	static std::map<DWORD64, Render::HealthBar> HealthBarMap;
 
@@ -186,8 +224,7 @@ void Cheats::Run()
 		}*/
 		DistanceToSight = Entity.GetBone().BonePosList[BONEINDEX::head].ScreenPos.DistanceTo({ Gui.Window.Size.x / 2,Gui.Window.Size.y / 2 });
 
-
-		if (DistanceToSight < MaxAimDistance)
+		if (DistanceToSight < MaxAimDistance && (!AimControl::ImmunityCheck || (AimControl::ImmunityCheck && !Entity.Pawn.Immunity)))
 		{
 			MaxAimDistance = DistanceToSight;
 
@@ -268,15 +305,11 @@ void Cheats::Run()
 
 	bmb::RenderWindow();
 
-	// RCS
+	//AimBot not Active
+	bool ab = true;
 
-	/*
-	if (MenuConfig::RCS)
-	{
-		RCS::GetAngles(LocalEntity, AimControl::Angles);
-		//std::cout << "(" << Angles.x << ", " << Angles.y << ")" << std::endl;
-		RCS::Run(LocalEntity, AimControl::Angles, MenuConfig::AimBot);
-	}*/
+	RCS::Run(LocalEntity, AimControl::Angles, false);
+
 	// Aimbot
 	if (MenuConfig::AimBot)
 	{
@@ -287,6 +320,7 @@ void Cheats::Run()
 			if (AimPos != Vec3(0, 0, 0))
 			{
 				AimControl::AimBot(LocalEntity, LocalEntity.Pawn.CameraPos, AimPos);
+				ab = false;
 			}
 		}
 		else
@@ -296,6 +330,7 @@ void Cheats::Run()
 				if (AimPos != Vec3(0, 0, 0))
 				{
 					AimControl::AimBot(LocalEntity, LocalEntity.Pawn.CameraPos, AimPos);
+					ab = false;
 				}
 			}
 		}
@@ -305,8 +340,23 @@ void Cheats::Run()
 			AimControl::switchToggle();
 			lastTick = currentTick;
 		}
-			
-			
 	}
+
+	//RCS
+	
+	if (MenuConfig::RCS && LocalEntity.Pawn.ShotsFired > 0 && !MenuConfig::RCS_AimBotOnly)
+	{
+		if (ab){ //USE RCS
+			Vec2 Angles = AimControl::Angles - RCS::AngleLast;
+
+			int Screen = sqrtf(Gui.Window.Size.x * Gui.Window.Size.y);
+
+			mouse_event(MOUSEEVENTF_MOVE, 
+				Angles.y * Screen / tanf(LocalEntity.Pawn.Fov / 3.f * PI / 180.f) / 35.f,
+				-Angles.x * Screen / tanf(LocalEntity.Pawn.Fov / 3.f * PI / 180.f) / 35.f, NULL, NULL);
+		}
+	}
+
+	RCS::AngleLast = AimControl::Angles;
 		
 }

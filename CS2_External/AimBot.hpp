@@ -26,6 +26,9 @@ namespace AimControl
     inline std::vector<int> HotKeyList{ VK_LMENU, VK_LBUTTON, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, VK_CAPITAL, VK_LSHIFT, VK_LCONTROL };
     inline Vec2 _Angles = { 0,0 };
     inline Vec2 Angles = { 0,0 };
+    inline bool ImmunityCheck = true;
+
+    inline int Mode = 0;
 
     inline void SetHotKey(int Index)
     {
@@ -43,7 +46,7 @@ namespace AimControl
             return;
 
         float Yaw, Pitch;
-        float Distance, Norm;
+        float Distance, Norm, Length;
         Vec3 OppPos;
         int ScreenCenterX = Gui.Window.Size.x / 2;
         int ScreenCenterY = Gui.Window.Size.y / 2;
@@ -53,26 +56,37 @@ namespace AimControl
 
         OppPos = AimPos - LocalPos;
 
+        Distance = sqrt(OppPos.x * OppPos.x + OppPos.y * OppPos.y);
+        Length = sqrt(Distance * Distance + OppPos.z * OppPos.z);
         if (MenuConfig::RCS) {
             //RCS::GetAngles(Local, Angles);
             //_Angles = Vec2(Angles);
-            RCS::Run(Local, Angles, true);
+            //RCS::Run(Local, Angles, true);
 
-            q.SetEulerAngle(
-                -Angles.y / 180.f * PI * RCSScale.y,
-                Angles.x / 180.f * PI * RCSScale.x,
-                .0f);
-            Vec3 opp;
-            q.Mul(OppPos.x, OppPos.y, OppPos.z, opp.x, opp.y, opp.z);
-            OppPos = Vec3(opp);
-            AimPos = Vec3(LocalPos + OppPos);
+            float rad = Angles.x * RCSScale.x / 180.f * PI;
+            float si = sinf(rad);
+            float co = cosf(rad);
+
+            float z_ = OppPos.z * co + Distance * si;
+            float d_ = (Distance * co - OppPos.z * si) / Distance;
+
+            rad = -Angles.y * RCSScale.y / 180.f * PI;
+            si = sinf(rad);
+            co = cosf(rad);
+
+            float x_ = (OppPos.x * co - OppPos.y * si) * d_;
+            float y_ = (OppPos.x * si + OppPos.y * co) * d_;
+
+            OppPos = Vec3{ x_, y_, z_ };
+
+            AimPos = LocalPos + OppPos;
         }
-
-        Distance = sqrt(pow(OppPos.x, 2) + pow(OppPos.y, 2));
 
         Yaw = atan2f(OppPos.y, OppPos.x) * 57.295779513 - Local.Pawn.ViewAngle.y;
         Pitch = -atan(OppPos.z / Distance) * 57.295779513 - Local.Pawn.ViewAngle.x;
         Norm = sqrt(pow(Yaw, 2) + pow(Pitch, 2));
+
+
 
         Vec2 ScreenPos;
         gGame.View.WorldToScreen(Vec3(AimPos), ScreenPos);
@@ -83,7 +97,7 @@ namespace AimControl
             if (ScreenPos.x != ScreenCenterX)
             {
                 TargetX = (ScreenPos.x > ScreenCenterX) ? -(ScreenCenterX - ScreenPos.x) : ScreenPos.x - ScreenCenterX;
-                TargetX /= SmoothX != 0.0f ? SmoothX : 1.5f;
+                TargetX /= SmoothX != 0.0f ? SmoothX + 1.f : 1.5f;
                 TargetX = (TargetX + ScreenCenterX > ScreenCenterX * 2 || TargetX + ScreenCenterX < 0) ? 0 : TargetX;
             }
 
@@ -92,15 +106,16 @@ namespace AimControl
                 if (ScreenPos.y != ScreenCenterY)
                 {
                     TargetY = (ScreenPos.y > ScreenCenterY) ? -(ScreenCenterY - ScreenPos.y) : ScreenPos.y - ScreenCenterY;
-                    TargetY /= SmoothY != 0.0f ? SmoothY : 1.5f;
+                    TargetY /= SmoothY != 0.0f ? SmoothY + 1.f : 1.5f;
                     TargetY = (TargetY + ScreenCenterY > ScreenCenterY * 2 || TargetY + ScreenCenterY < 0) ? 0 : TargetY;
                 }
             }
 
-            // Dynamic AimSmooth based on distance
+            //Dynamic AimSmooth based on distance
             float DistanceRatio = Norm / AimFov; // Calculate the distance ratio
             float SpeedFactor = 1.0f + (1.0f - DistanceRatio); // Determine the speed factor based on the distance ratio
 
+            
             if (SmoothX) {
                 TargetX /= (SmoothX * SpeedFactor);
                 if (fabs(TargetX) < 1)
@@ -115,7 +130,7 @@ namespace AimControl
                     }
                 }
             }
-            else
+            if (SmoothY)
             {
                 TargetY /= (SmoothY * SpeedFactor);
                 if (fabs(TargetY) < 1)
@@ -131,7 +146,7 @@ namespace AimControl
                 }
             }
          
-            mouse_event(MOUSEEVENTF_MOVE, (DWORD)(TargetX), (DWORD)(TargetY), NULL, NULL);
+            mouse_event(MOUSEEVENTF_MOVE, TargetX, TargetY, NULL, NULL);
         }
     }
 }

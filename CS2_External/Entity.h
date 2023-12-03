@@ -51,6 +51,7 @@ public:
 	int Fov;
 	DWORD64 bSpottedByMask;
 	int fFlags;
+	bool Immunity;
 
 public:
 	bool GetPos();
@@ -65,6 +66,7 @@ public:
 	bool GetSpotted();
 	bool GetFFlags();
 	bool GetAimPunchCache();
+	bool GetImmunity();
 
 	constexpr bool HasFlag(const Flags Flag) const noexcept {
 		return fFlags & (int)Flag;

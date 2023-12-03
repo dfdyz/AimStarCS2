@@ -118,6 +118,7 @@ namespace GUI
 				}
 				ImGui::SameLine();
 				ImGui::Checkbox(Lang::AimbotText.Toggle, &MenuConfig::AimToggleMode);
+				ImGui::Checkbox("ImmunityCheck", &AimControl::ImmunityCheck);
 
 				ImGui::Checkbox(Lang::AimbotText.DrawFov, &ESPConfig::DrawFov);
 				ImGui::SameLine();
@@ -127,7 +128,7 @@ namespace GUI
 
 
 				
-				ImGui::SliderFloat(Lang::AimbotText.FovSlider, &AimControl::AimFov, 0.0f, 25.0f, "%.1f", ImGuiSliderFlags_Logarithmic | ImGuiColorEditFlags_NoInputs);
+				ImGui::SliderFloat(Lang::AimbotText.FovSlider, &AimControl::AimFov, 0.0f, 35.0f, "%.1f", ImGuiSliderFlags_Logarithmic | ImGuiColorEditFlags_NoInputs);
 				sprintf_s(TempText, "%s%s", Lang::AimbotText.SmoothSlider, "_X");
 				ImGui::SliderFloat(TempText, &AimControl::SmoothX, 0.0f, 5.0f, "%.1f", ImGuiColorEditFlags_NoInputs);
 				sprintf_s(TempText, "%s%s", Lang::AimbotText.SmoothSlider, "_Y");
@@ -153,13 +154,15 @@ namespace GUI
 					}
 				}
 				ImGui::TextColored(ImColor(101, 255, 0, 255), Lang::AimbotText.Tip);
+
 				
 				ImGui::NewLine();
 				ImGui::SeparatorText("Recoil Control System");
 				Gui.MyCheckBox("Enabled", &MenuConfig::RCS);
+				Gui.MyCheckBox("AimBotOnly", &MenuConfig::RCS_AimBotOnly);
 				ImGui::SliderInt("Start Bullet", &RCS::RCSBullet, 1, 6, "%d");
-				ImGui::SliderFloat("Yaw", &AimControl::RCSScale.y, -2.f, 2.f, "%.1f");
-				ImGui::SliderFloat("Pitch", &AimControl::RCSScale.x, -2.f, 2.f, "%.1f");
+				ImGui::SliderFloat("Yaw", &AimControl::RCSScale.y, 0.f, 2.f, "%.1f");
+				ImGui::SliderFloat("Pitch", &AimControl::RCSScale.x, 0.f, 2.f, "%.1f");
 
 				ImGui::EndTabItem();
 			}

@@ -22,3 +22,4 @@ namespace Cheats
 struct {
 	ImFont* normal15px = nullptr;
 } fonts;
+

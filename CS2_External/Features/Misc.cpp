@@ -2,8 +2,10 @@
 #include "..\Sources\Language.h"
 #include <iostream>
 
+
 void Misc::CheatList() noexcept
 {
+	static const char* Mode[4] = { "Mode: AimBot", "Mode: TriggerBot", "Mode: Both", "Mode: None" };
 	if (!MenuConfig::CheatList)
 		return;
 
@@ -12,10 +14,12 @@ void Misc::CheatList() noexcept
 	ImGui::SetNextWindowSize(ImVec2(200, 0));
 	ImGui::Begin("Cheats List", nullptr, windowFlags);
 
+	CheatText(Mode[AimControl::Mode], true);
+	CheatText("-----------------", true);
 	CheatText("ESP", ESPConfig::ESPenbled);
 	if (MenuConfig::AimBot && (MenuConfig::AimAlways || GetAsyncKeyState(AimControl::HotKey)))
 		ImGui::Text("Aimbot [Toggle]");
-	CheatText("RCS", MenuConfig::RCS);
+	CheatText(!MenuConfig::RCS_AimBotOnly ? "RCS" : "RCS [AimBotOnly]", MenuConfig::RCS);
 	CheatText("Glow", MenuConfig::Glow);
 	CheatText("Radar", MenuConfig::ShowRadar);
 	if (MenuConfig::TriggerBot && (MenuConfig::TriggerAlways || GetAsyncKeyState(MenuConfig::TriggerHotKey)))
@@ -27,6 +31,7 @@ void Misc::CheatList() noexcept
 	//CheatText("Bhop", MenuConfig::BunnyHop);
 	CheatText("HitSound", MenuConfig::HitSound);
 	CheatText("Bomb Timer", MenuConfig::bmbTimer);
+	CheatText("TriggerBot", MenuConfig::TriggerBot);
 	//CheatText("Spec List", MenuConfig::SpecList);
 
 	ImGui::End();

@@ -26,6 +26,7 @@ namespace MenuConfig
 	inline bool VisibleCheck = false;
 
 	inline bool RCS = false;
+	inline bool RCS_AimBotOnly = false;
 	inline bool Bhop = false;
 
 	// 0: normal 1: dynamic 2: Flat
